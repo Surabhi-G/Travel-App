@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Travel App</title>
+</head>
+    <body>
+        <div class ="headline">
+        TRAVEL APP
+      </div>
+      <div class ="date">
+        <label for="date">Enter date here</label>
+        <input type="date" id="date" >
+      </div><br>
+      <div class ="city">
+        <label for="city">Enter city here</label>
+        <input type="text" id="city" placeholder="Ex : chicago">
+      </div><br>
+      <button id="generate" type = "submit"> Generate </button>
+      <div class ="entry">
+        <p id="cityname"></p>
+        <p id="country"></p>
+        <p id="city_population"></p>
+        <p id="city_latitude"></p>
+        <p id="city_longitude"></p>
+        <p id="tmax"></p>
+        <p id="tmin"></p>
+        <p id="summary"></p>    
+      </div>
+      <div id="picture">
+      </div>
+        <footer>
+            <p>&copy; Developed by Surabhi Goswami</p>
+        </footer>
+        <script>
+            // Check that service workers are supported
+            if ('serviceWorker' in navigator) {
+              // Use the window load event to keep the page load performant
+                window.addEventListener('load', () => {
+                   navigator.serviceWorker.register('/service-worker.js').then(registration =>{
+                       console.log('SW registered: ', registration);
+                    });
+                });
+            }
+            else{
+                console.log("Service Workers not working");
+            }
+            window.onbeforeunload = function() {
+             return "Are you sure you want to leave?";
+            }
+        </script> 
+    </body>
+</html>
