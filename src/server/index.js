@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 app.get('/test', function (req, res) {
   res.send(mockAPIResponse)
 })
-app.get('/trips', (req, res) => {
+app.get('/getTrip', (req, res) => {
     res.status(200).send(tripData)
 })
 //http://api.geonames.org/searchJSON?q=london&maxRows=1&username=demo
@@ -33,22 +33,22 @@ app.get('/trips', (req, res) => {
 const GeoUsername = process.env.GEONAMES_USERNAME;
 const GeoURL = process.env.GEONAMES_URL;
 
-const fetchLatLng = async (city) => {
+const fetchLatLng = async (destination) => {
     try {
-      if (!city) {
-        throw 'Please provide a city!'
+      if (!destination) {
+        // if user doesn't enter any destination
+        throw 'please enter a destination'
       }
       const result = await fetch(
-        `${GeoURL}q=${city}&maxRows=1&username=${GeoUsername}`,
+        `${GeoURL}q=${destination}&maxRows=1&username=${GeoUsername}`,// fetching lat and lng from Geonames using destination user entered
       )
-      const {geonames: cities} = await result.json()
-      if (cities.length > 0) {
+      const {geonames: destinations} = await result.json()
+      if (destinations.length > 0) {// for every destination
         const location = {
-          location: `${cities[0].name}`,
-          lat: cities[0].lat,
-          lng: cities[0].lng
+          location: `${destinations[0].name}`,// name of the destination
+          lat: destinations[0].lat,//latitude of destination
+          lng: destinations[0].lng//longitude of destination
         }
-        
         return location
       }
       return {}
@@ -65,15 +65,14 @@ const weatherbitURL = process.env.WEATHERBIT_URL;
 
 const fetchWeather = async(lat, lng) => {
   try {
-    const result = await fetch(`${weatherbitURL}lat=${lat}&lon=${lng}&key=${weatherbitKey}`)
-    const resultdata = await result.json()
+    const result = await fetch(`${weatherbitURL}lat=${lat}&lon=${lng}&key=${weatherbitKey}`)// fetching weather data using key, lat and lng from weatherbit
+    const resultdata = await result.json()// storing JSON data we fetched in resultdata 
     const finalData = resultdata.data[resultdata.data.length - 1]
     const weatherData = {
-      max_temp: finalData.max_temp,
-      min_temp: finalData.min_temp,
-      summary: finalData.weather.description
+      max_temp: finalData.max_temp,//max temp from JSON
+      min_temp: finalData.min_temp,//min temp from JSON
+      summary: finalData.weather.description//Summary from JSON
     }
-    //console.log(weatherData)
     return weatherData
   } catch(e) {
     throw e
@@ -84,36 +83,30 @@ const fetchWeather = async(lat, lng) => {
 //pixabay 
 const pixabaykey = process.env.PIXABAY_KEY
 const pixabayURL = process.env.PIXABAY_URL
-const fetchImage = async(city) => {
+const fetchImage = async(destination) => {
   try{
-    const result = await fetch(`${pixabayURL}key=${pixabaykey}&q=${city}&category=travel`)
-    const data = await result.json()
-    //console.log(hits)
-    //console.log(hits[0].webformatURL)
-    return data.hits[0].webformatURL
+    const result = await fetch(`${pixabayURL}key=${pixabaykey}&q=${destination}&category=travel`)// fetching image data using key and location from pixabay
+    const data = await result.json()// storing JSON data we fetched in data 
+    return data.hits[0].webformatURL// getting appropriate image URL 
     
   } catch(e) {
     throw e
   }
 }
 
-//get city
-app.post('/trip', async (req, res) => {
+//get related destination data from appropriate API and post it
+app.post('/postTrip', async (req, res) => {
     try {
-        const city = req.body.location
-        //console.log(city)
-      const {lat, lng, location} = await fetchLatLng(city)
-     //console.log(lat + " " + lng + " " + location)
-      const weather = await fetchWeather(lat, lng)
-      //console.log(weather)
-      const picture = await fetchImage(location)
-      //console.log(picture)
+      const destination = req.body.location // request for that location is stored
+      const {lat, lng, location} = await fetchLatLng(destination)// have function to fetch lat and lng for the destination
+      const weather = await fetchWeather(lat, lng)// have function to fetch weather data from lat and lng
+      const picture = await fetchImage(location)//have funtion to fetch related image of th destination
       const trip = {
         location,
         weather,
         picture,
-      }
-      tripData.push(trip)
+      }//trip will have the data from API's we needed
+      tripData.push(trip)// data of trip in tripData array
       res.status(201).send()
     } catch (e) {
       console.log(e)
@@ -121,7 +114,7 @@ app.post('/trip', async (req, res) => {
     }
   })
 
-//server setup
+//server port set up and running
 app.listen(9000, function () 
 { console.log('Example app listening on port 9000!') })
 
