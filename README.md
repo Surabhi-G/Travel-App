@@ -11,7 +11,18 @@ Git clone the project/ download the project
 Open it in your preferred editor
 
 Create a .env file which has:-
-GEONAMES_USERNAME, GEONAMES_URL(this will be geonames username and URL), WEATHERBIT_KEY, WEATHERBIT_URL(this will be Weatherbit key and URL), PIXABAY_KEY, PIXABAY_URL (this will be Pixabay key and URL) 
+
+GEONAMES_USERNAME (this will be geonames username),
+
+GEONAMES_URL (http://api.geonames.org/searchJSON?),
+
+WEATHERBIT_KEY (this will be Weatherbit key),
+
+WEATHERBIT_URL (https://api.weatherbit.io/v2.0/forecast/daily?), 
+
+PIXABAY_KEY (this will be Pixabay key),
+
+PIXABAY_URL (https://pixabay.com/api/?) 
 
 npm install to download all the dependencies
 npm run build-dev to get it start
