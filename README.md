@@ -25,15 +25,18 @@ PIXABAY_KEY (this will be Pixabay key),
 PIXABAY_URL (https://pixabay.com/api/?) 
 
 npm install to download all the dependencies
+
 npm run build-dev to get it start
+
 npm start to start the express server
+
 npm start:dev to start the dev server
 
 Technologies used
 ----------------------------------------------------------------
-HTML5
-CSS3
-JavaScript
-Express
-Node
-Webpack
+HTML5 
+CSS3 
+JavaScript 
+Express 
+Node 
+Webpack 
