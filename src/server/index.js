@@ -66,8 +66,8 @@ const weatherbitURL = process.env.WEATHERBIT_URL;
 const fetchWeather = async(lat, lng) => {
   try {
     const result = await fetch(`${weatherbitURL}lat=${lat}&lon=${lng}&key=${weatherbitKey}`)// fetching weather data using key, lat and lng from weatherbit
-    const resultdata = await result.json()// storing JSON data we fetched in resultdata 
-    const finalData = resultdata.data[resultdata.data.length - 1]
+    const resultdata = await result.json()// storing JSON data we fetched in resultdata
+    const finalData = resultdata.data[resultdata.data.length - 10] 
     const weatherData = {
       max_temp: finalData.max_temp,//max temp from JSON
       min_temp: finalData.min_temp,//min temp from JSON

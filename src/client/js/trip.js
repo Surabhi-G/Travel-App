@@ -32,9 +32,9 @@ const getTrips = async () => {
       trips.forEach(trip => {
         const {location, weather, picture} = trip
         document.getElementById('destinationname').innerHTML = `${countDown} days left for ${vacationDays} days long trip to ${location}`
-        document.getElementById('max_temp').innerHTML = `Current maximum temprature in ${location} is ${weather.max_temp}C`
-        document.getElementById('min_temp').innerHTML = `Current minimum temprature in ${location} is ${weather.min_temp}C`
-        document.getElementById('summary').innerHTML = `Today there is ${weather.summary} in ${location}`
+        document.getElementById('max_temp').innerHTML = `Within a week maximum temprature in ${location} will be ${weather.max_temp}C`
+        document.getElementById('min_temp').innerHTML = `Within a week minimum temprature in ${location} will be ${weather.min_temp}C`
+        document.getElementById('summary').innerHTML = `In next week there will be ${weather.summary} in ${location}`
         document.getElementById('picture').innerHTML = `<img src="${picture}">`
       })
     }
