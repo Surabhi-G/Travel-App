@@ -5,30 +5,39 @@
 <title>Travel App</title>
 </head>
     <body>
-        <div class ="headline">
-        TRAVEL APP
+        <main>
+        <div class ="heading">
+        Travel App
       </div>
-      <div class ="date">
-        <label for="date">Enter date here</label>
+      <div class = "form_field">
+        <div class ="city">
+          <label for="city">Enter the place you want to visit:</label></br>
+          <input type="text" id="city" placeholder="Ex : Paris">
+        </div>
+      <div class ="date1">
+        <label for="date">Starting date of the trip:</label></br>
         <input type="date" id="date" >
-      </div><br>
-      <div class ="city">
-        <label for="city">Enter city here</label>
-        <input type="text" id="city" placeholder="Ex : chicago">
-      </div><br>
-      <button id="generate" type = "submit"> Generate </button>
-      <div class ="entry">
-        <p id="cityname"></p>
-        <p id="country"></p>
-        <p id="city_population"></p>
-        <p id="city_latitude"></p>
-        <p id="city_longitude"></p>
-        <p id="tmax"></p>
-        <p id="tmin"></p>
-        <p id="summary"></p>    
       </div>
-      <div id="picture">
+      <div class ="date2">
+        <label for="date">Ending date of the trip:</label></br>
+        <input type="date" id="end_date" >
       </div>
+    
+      <div class ="button">
+      <button id="generate" type = "submit"> Apply </button>
+      </div>
+    </div>
+    <div class= "result">
+      <div class ="trip_data">
+        <div id="cityname"></div>
+        <div id="max_temp"></div>
+        <div id="min_temp"></div>
+        <div id="summary"></div>   
+      </div>
+      <div class="picture" id="picture">
+      </div>
+    </div>
+    </main>
         <footer>
             <p>&copy; Developed by Surabhi Goswami</p>
         </footer>

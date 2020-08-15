@@ -1,0 +1,43 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-size: 16px;
+    background-color: seashell;
+}
+
+main {
+    flex: 5;
+}
+.result{
+    display: flex;
+    flex-direction: column;
+}
+.trip_data{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: auto;
+}
+.trip_data{
+    font-size: large;
+    font-family: Palatino Linotype;
+}
+
+div {
+    max-width: 90%;
+    margin: 10px auto;
+}
+#cityname{
+    color: coral;
+}
+#max_temp{
+    color: mediumblue;
+}
+#min_temp{
+    color: mediumslateblue;
+}
+#summary{
+    color: mediumvioletred;
+}
