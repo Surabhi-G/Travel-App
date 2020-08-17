@@ -9,7 +9,6 @@
     font-family: Harrington;
     font-size: 1.3em;
 }
-
 #generate{
     padding: 5px 20px;
     border-radius: 10px;
@@ -19,6 +18,9 @@
     background-color: deeppink;
     font-family: Harrington
 }
+#generate:hover {
+    box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.2);
+  }
 input {
     padding: 5px 20px;   
     line-height: 16px;

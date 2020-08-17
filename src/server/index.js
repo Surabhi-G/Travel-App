@@ -1,4 +1,4 @@
-tripData = []
+const tripData = []
 //require express bodyParser and cors
 var path = require('path')
 const mockAPIResponse = require('./mockAPI.js')
