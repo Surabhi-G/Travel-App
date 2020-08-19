@@ -72,10 +72,12 @@
   //added eventlistener when user click on generate button
   
   function handleSubmit() { 
-  generate.addEventListener('click', ()=>{
-  myTrip(destination.value);
-  })
-  }
+    if(generate != null){
+      generate.addEventListener('click', ()=>{
+        myTrip(destination.value);
+        });
+    }; 
+  };
 handleSubmit();
 
 export {handleSubmit}
